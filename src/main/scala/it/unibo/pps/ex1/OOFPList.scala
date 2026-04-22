@@ -110,14 +110,14 @@ enum List[A]:
 
   def partition(predicate: A => Boolean): (List[A], List[A]) =
     @tailrec
-    def _partition(acc: (List[A], List[A]), predicate: A => Boolean, list: List[A]): (List[A], List[A]) = {
+    def _partition(acc: (List[A], List[A]), list: List[A]): (List[A], List[A]) = {
       val (trueList, falseList) = acc
       list match
-      case h :: t if predicate(h) => _partition((h :: trueList, falseList), predicate, t)
-      case h :: t => _partition((trueList, h :: falseList), predicate, t)
+      case h :: t if predicate(h) => _partition((h :: trueList, falseList), t)
+      case h :: t => _partition((trueList, h :: falseList), t)
       case _ => acc
     }
-    val (trueList, falseList) = _partition((Nil(), Nil()), predicate, this)
+    val (trueList, falseList) = _partition((Nil(), Nil()), this)
     (trueList.reverse(), falseList.reverse())
 
   def partitionWithFold(predicate: A => Boolean): (List[A], List[A]) =

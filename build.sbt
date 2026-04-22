@@ -6,5 +6,5 @@ lazy val root = project
       name := "pps-lab06",
       version := "0.1.0-SNAPSHOT",
       scalaVersion := scala3Version,
-      libraryDependencies += "com.github.sbt" % "junit-interface" % "0.13.3" % Test
+    libraryDependencies += "net.aichler" % "jupiter-interface" % "0.9.0" % Test
   )
